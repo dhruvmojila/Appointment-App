@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { Button, Image, Input } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../utils/firebase/firebase";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
@@ -27,8 +27,11 @@ const LoginScreen = () => {
       .then((userCredential) => {
         const user = userCredential.user;
 
-        navigation.navigate("HomeScreen");
-        console.log(user, "Login SucessFull");
+        navigation.reset({
+          index: 0,
+          routes: [{ name: "Dashboard" }],
+        });
+        // console.log(user, "Login SucessFull");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -46,10 +49,8 @@ const LoginScreen = () => {
       <StatusBar style="light" />
 
       <Image
-        style={{ width: 200, height: 200 }}
-        source={{
-          uri: "https://static-00.iconduck.com/assets.00/chat-icon-1024x1024-o88plv3x.png",
-        }}
+        style={{ width: 180, height: 180, marginBottom: 24 }}
+        source={require("../utils/images/calendar.png")}
       />
       <View style={styles.inputContainer}>
         <Input

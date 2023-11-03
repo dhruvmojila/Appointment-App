@@ -6,6 +6,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import LoginScreen from "./src/screen/LoginScreen";
 import Register from "./src/screen/Register";
 import SpashScreen from "./src/screen/SpashScreen";
+import NotificationDemo from "./src/screen/NotificationDemo";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -20,6 +21,7 @@ export default function App() {
     <NavigationContainer>
       <SafeAreaProvider>
         <Stack.Navigator screenOptions={globalScreenOptons}>
+          <Stack.Screen name="NotiDemo" component={NotificationDemo} />
           <Stack.Screen
             name="Splash"
             component={SpashScreen}
